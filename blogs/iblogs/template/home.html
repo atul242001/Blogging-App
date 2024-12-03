@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %} Welcome to Iblogs {% endblock %}
+
+{% block content %}
+
+
+<div class="container-custom">
+
+    <div class="owl-carousel">
+        
+        {% for cat in cats %}
+
+        <div class="card item" style="margin-left: 10px;">
+
+            <div class="img-container">
+                <img src="{{ cat.image.url }}" class="responsive-img" alt="Image for {{ cat.name }}" style="max-width: 100%; height: auto;">
+            </div>
+            <div class="card-content">
+                <div class="card-title">
+                    {{cat.title}}
+                </div>
+                <p class="truncate">{{cat.description}}</p>
+                <div class="container  center-align">    
+                    <a href="/category/{{cat.url}}" class="btn bg-primary" style="background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">VIEW</a>
+                </div>
+            </div>
+
+            
+
+
+        </div>
+        {%endfor%}
+      </div>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            {% for p in posts %}
+            <div class="row">
+                <div class="col s12 m8">
+
+
+
+                    <h3>{{ p.title }}</h3> <!-- Display the title -->
+                    {{ p.content |truncatewords:60 | safe }} <!-- Display the content -->
+                    <div class=" ">
+                        <a href="/blog/{{p.url}}" class="btn"
+                            style="background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Read
+                            More..</a>
+
+                    </div>
+                </div>
+                <div class="col s12 m4">
+
+                    <img src="{{ p.image.url }}" class="responsive-img" style="margin-top: 50px;" alt="">
+
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
